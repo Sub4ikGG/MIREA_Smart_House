@@ -1,4 +1,4 @@
-package ru.chatan.smarthouse.service.logs
+package ru.chatan.smarthouse.service.smart.logs
 
 import kotlinx.serialization.Serializable
 

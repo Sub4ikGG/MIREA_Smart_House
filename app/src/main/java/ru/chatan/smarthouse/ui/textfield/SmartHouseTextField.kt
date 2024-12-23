@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
 import androidx.compose.foundation.text.selection.TextSelectionColors
@@ -38,6 +39,7 @@ fun SmartHouseTextField(
     hint: String = "",
     onValueChange: (TextFieldValue) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
+    keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = true,
     focusRequester: FocusRequester = FocusRequester.Default
 ) {
@@ -78,6 +80,7 @@ fun SmartHouseTextField(
                         }
                     },
                     keyboardOptions = keyboardOptions,
+                    keyboardActions = keyboardActions,
                     singleLine = singleLine,
                     decorationBox = {
                         if (value.text.isEmpty())

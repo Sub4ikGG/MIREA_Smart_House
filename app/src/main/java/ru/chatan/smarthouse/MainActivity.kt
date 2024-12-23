@@ -1,31 +1,25 @@
 package ru.chatan.smarthouse
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ru.chatan.smarthouse.service.LampState
+import ru.chatan.smarthouse.service.authorization.AuthorizationState
 import ru.chatan.smarthouse.ui.SmartContent
 import ru.chatan.smarthouse.ui.authorization.AuthorizationContent
-import ru.chatan.smarthouse.ui.dialog.logs.ServiceLogsDialog
 import ru.chatan.smarthouse.ui.theme.SmartHouseTheme
-import ru.chatan.smarthouse.viewmodel.SmartViewModel
+import ru.chatan.smarthouse.viewmodel.AuthorizationViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -35,17 +29,47 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            val isAuthorized = remember { mutableStateOf(false) }
+            val context = LocalContext.current.applicationContext
+            val authorizationViewModel: AuthorizationViewModel = viewModel()
+            val authorizationState by authorizationViewModel.state.collectAsStateWithLifecycle(
+                initialValue = AuthorizationState.None
+            )
+
+            LaunchedEffect(key1 = Unit) {
+                authorizationViewModel.checkAuthorization(context = context)
+            }
+
+            LaunchedEffect(key1 = authorizationState) {
+                (authorizationState as? AuthorizationState.NotAuthorized)?.let {
+                    if (it.message != null) {
+                        Toast.makeText(
+                            context,
+                            "Неверные пользовательские данные",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+
             SmartHouseTheme {
-                if (isAuthorized.value)
+                if (authorizationState is AuthorizationState.Authorized)
                     SmartContent()
 
                 AnimatedVisibility(
-                    visible = !isAuthorized.value,
+                    visible = authorizationState !is AuthorizationState.Authorized,
                     enter = scaleIn(),
                     exit = fadeOut()
                 ) {
-                    AuthorizationContent(onAuthorize = { isAuthorized.value = true })
+                    AuthorizationContent(
+                        isAuthorizationInProgress = authorizationState is AuthorizationState.Loading,
+                        onAuthorize = { user, password ->
+                            authorizationViewModel.authorize(
+                                context = context,
+                                user = user,
+                                password = password
+                            )
+                        }
+                    )
                 }
             }
         }

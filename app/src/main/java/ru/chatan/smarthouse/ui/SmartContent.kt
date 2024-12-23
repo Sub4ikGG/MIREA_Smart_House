@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ru.chatan.smarthouse.service.LampState
+import ru.chatan.smarthouse.service.smart.LampState
 import ru.chatan.smarthouse.ui.UiConstants.defaultPadding
 import ru.chatan.smarthouse.ui.UiConstants.smartContentSpace
 import ru.chatan.smarthouse.ui.component.SmartComponents

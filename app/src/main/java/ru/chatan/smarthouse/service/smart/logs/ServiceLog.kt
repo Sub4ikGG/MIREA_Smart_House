@@ -1,4 +1,4 @@
-package ru.chatan.smarthouse.service.logs
+package ru.chatan.smarthouse.service.smart.logs
 
 import io.ktor.util.date.toDate
 import kotlinx.serialization.Serializable

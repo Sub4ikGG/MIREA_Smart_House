@@ -1,7 +1,7 @@
-package ru.chatan.smarthouse.service
+package ru.chatan.smarthouse.service.smart
 
 import kotlinx.coroutines.flow.Flow
-import ru.chatan.smarthouse.service.logs.ServiceLogs
+import ru.chatan.smarthouse.service.smart.logs.ServiceLogs
 
 interface SmartService {
     val state: Flow<LampState>

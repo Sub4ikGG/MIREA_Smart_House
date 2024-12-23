@@ -8,8 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.sync.Mutex
-import ru.chatan.smarthouse.service.SmartService
+import ru.chatan.smarthouse.service.smart.SmartService
 import ru.chatan.smarthouse.ui.dialog.logs.ServiceLogsDialogState
 
 class SmartViewModel : ViewModel() {

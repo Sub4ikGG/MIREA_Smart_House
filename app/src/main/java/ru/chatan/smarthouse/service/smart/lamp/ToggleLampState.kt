@@ -1,4 +1,4 @@
-package ru.chatan.smarthouse.service.lamp
+package ru.chatan.smarthouse.service.smart.lamp
 
 import kotlinx.serialization.Serializable
 

@@ -19,8 +19,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.chatan.smarthouse.service.logs.ServiceLog
-import ru.chatan.smarthouse.service.logs.ServiceLogs
+import ru.chatan.smarthouse.service.smart.logs.ServiceLog
+import ru.chatan.smarthouse.service.smart.logs.ServiceLogs
 import ru.chatan.smarthouse.ui.theme.LocalSmartHouseTypography
 import ru.chatan.smarthouse.ui.theme.SmartHouseTheme
 

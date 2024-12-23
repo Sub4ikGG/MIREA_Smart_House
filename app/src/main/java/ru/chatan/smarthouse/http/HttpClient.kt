@@ -5,22 +5,40 @@ import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.header
-import io.ktor.client.utils.buildHeaders
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-val httpClient: HttpClient = HttpClient(CIO) {
-    expectSuccess = false
+object SmartHouseHttpClient {
 
-    install(ContentNegotiation) {
-        json(json = Json {
-            ignoreUnknownKeys = true
-            isLenient = true
-        })
+    private var smartHouseHttpClient: HttpClient = buildHttpClient()
+
+    private fun buildHttpClient(
+        user: String? = null,
+        password: String? = null
+    ): HttpClient {
+        val httpClient = HttpClient(CIO) {
+            expectSuccess = false
+
+            install(ContentNegotiation) {
+                json(json = Json {
+                    ignoreUnknownKeys = true
+                    isLenient = true
+                })
+            }
+
+            if (user != null && password != null)
+                defaultRequest {
+                    header("X-Username", user)
+                    header("X-Password", password)
+                }
+        }
+
+        return httpClient
     }
 
-    defaultRequest {
-        header("X-Username", "admin")
-        header("X-Password", "password")
+    fun rebuildHttpClient(user: String, password: String) {
+        smartHouseHttpClient = buildHttpClient(user = user, password = password)
     }
+
+    fun resolveHttpClient(): HttpClient = smartHouseHttpClient
 }

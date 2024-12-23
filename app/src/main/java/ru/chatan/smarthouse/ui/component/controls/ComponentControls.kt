@@ -1,13 +1,11 @@
 package ru.chatan.smarthouse.ui.component.controls
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -21,7 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.chatan.smarthouse.R
-import ru.chatan.smarthouse.service.LampState
+import ru.chatan.smarthouse.service.smart.LampState
 import ru.chatan.smarthouse.ui.theme.Ocean
 import ru.chatan.smarthouse.ui.theme.SmartHouseTheme
 import ru.chatan.smarthouse.ui.theme.noTintClickable

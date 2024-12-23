@@ -1,7 +1,7 @@
 package ru.chatan.smarthouse.ui.dialog.logs
 
 import androidx.compose.runtime.Immutable
-import ru.chatan.smarthouse.service.logs.ServiceLogs
+import ru.chatan.smarthouse.service.smart.logs.ServiceLogs
 
 @Immutable
 data class ServiceLogsDialogState(

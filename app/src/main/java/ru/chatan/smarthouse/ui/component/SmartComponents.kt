@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.chatan.smarthouse.service.LampState
+import ru.chatan.smarthouse.service.smart.LampState
 import ru.chatan.smarthouse.ui.UiConstants.defaultPadding
 import ru.chatan.smarthouse.ui.UiConstants.defaultSpace
 import ru.chatan.smarthouse.ui.theme.LocalSmartHouseTypography
