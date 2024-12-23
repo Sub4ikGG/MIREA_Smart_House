@@ -76,11 +76,12 @@ class RemoteSmartService : SmartService {
 
                     Log.e(TAG, "toggleLamp: $httpResponse")
 
-                    getLampState()
+                    mutableState.update { LampState.Disabled }
                 }
             } catch (e: Exception) {
                 Log.e(TAG, e.localizedMessage.orEmpty())
-                getLampState()
+
+                mutableState.update { LampState.Disabled }
             }
         }
     }
