@@ -19,8 +19,7 @@ class RemoteAuthorizationService : AuthorizationService {
     private val mutableState: MutableStateFlow<AuthorizationState> =
         MutableStateFlow(AuthorizationState.None)
 
-    override val state: Flow<AuthorizationState>
-        get() = mutableState.asStateFlow()
+    override val state: Flow<AuthorizationState> = mutableState.asStateFlow()
 
     override suspend fun checkAuthorization(context: Context) {
         val prefs = context.getPrefs() ?: return

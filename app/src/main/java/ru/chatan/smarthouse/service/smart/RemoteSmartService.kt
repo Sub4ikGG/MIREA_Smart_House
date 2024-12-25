@@ -23,8 +23,7 @@ class RemoteSmartService : SmartService {
     private val serviceMutex = Mutex()
     private val mutableState: MutableStateFlow<LampState> = MutableStateFlow(LampState.Loading)
 
-    override val state: Flow<LampState>
-        get() = mutableState.asStateFlow()
+    override val state: Flow<LampState> = mutableState.asStateFlow()
 
     override suspend fun getLampState(stateLoading: Boolean) {
         serviceMutex.withLock {
