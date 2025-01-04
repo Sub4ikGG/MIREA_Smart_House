@@ -1,7 +1,5 @@
 # Smart House - Android
 
-[README-RU](https://github.com/sub4ikgg)
-
 ## Android Application
 
 Description of the mobile application, including the technologies used and its implementation.
